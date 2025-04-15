@@ -12,15 +12,14 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-5">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
           <div className="flex flex-col">
-            <div className="flex items-center gap-2 mb-5">
+            <div className="mb-5">
               <Image
-                src="/icons/compass.svg"
-                alt="Voss Logo"
-                width={24}
-                height={24}
-                className="h-6 w-6"
+                src="/logos/voss-energy-logo-with-slogan.svg"
+                alt="Voss Energy"
+                width={180}
+                height={60}
+                className="h-auto w-48"
               />
-              <h3 className="text-xl font-semibold text-gray-800">Voss</h3>
             </div>
             <p className="text-gray-600 leading-relaxed">
               Providing quality services and solutions since 2023.

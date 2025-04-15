@@ -103,13 +103,12 @@ export default function Headline({ title, subtitle, items }: HeadlineProps) {
                 >
                   <div className="p-1 h-full">
                     <div className="relative overflow-hidden rounded-lg h-full group cursor-pointer bg-zinc-100 dark:bg-zinc-800">
-                      <div className="w-full h-64 flex justify-center items-center p-6 bg-gradient-to-br from-zinc-100 to-zinc-200 dark:from-zinc-800 dark:to-zinc-900">
+                      <div className="w-full h-64 relative">
                         <Image
                           src={item.image}
                           alt={item.title}
-                          width={120}
-                          height={120}
-                          className="w-24 h-24 transition-transform duration-300 group-hover:scale-110"
+                          fill
+                          className="object-contain transition-transform duration-300 group-hover:scale-110 p-4"
                         />
                       </div>
                       {isSmallScreen && (
@@ -180,19 +179,25 @@ export default function Headline({ title, subtitle, items }: HeadlineProps) {
                     "Entdecken Sie mehr über dieses Thema und erfahren Sie, wie unsere Lösungen zur nachhaltigen Zukunft beitragen können."}
                 </p>
 
-                <div className="flex items-center gap-1 mb-6">
-                  {items.map((_, index) => (
-                    <button
-                      key={index}
-                      className={`h-2 w-2 rounded-full transition-colors ${
-                        current === index
-                          ? "bg-zinc-900 dark:bg-zinc-50"
-                          : "bg-zinc-300 dark:bg-zinc-600"
-                      }`}
-                      onClick={() => api?.scrollTo(index)}
-                      aria-label={`Go to slide ${index + 1}`}
-                    />
-                  ))}
+                <div className="flex flex-col gap-4">
+                  <div className="flex items-center justify-center gap-2">
+                    {items.map((_, index) => (
+                      <button
+                        key={index}
+                        className={`h-3 w-3 rounded-full transition-colors ${
+                          current === index
+                            ? "bg-zinc-900 dark:bg-zinc-50"
+                            : "bg-zinc-300 dark:bg-zinc-600"
+                        }`}
+                        onClick={() => api?.scrollTo(index)}
+                        aria-label={`Go to slide ${index + 1}`}
+                      />
+                    ))}
+                  </div>
+
+                  <div className="text-center text-xs text-zinc-500">
+                    {current + 1} / {items.length}
+                  </div>
                 </div>
               </CardContent>
 

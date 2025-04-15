@@ -9,30 +9,45 @@ const headlineItems = [
     image: "/icons/solar-panel.svg",
     title: "Renewable Energy Innovations",
     category: "Technology",
+    date: "April 15, 2025",
+    description:
+      "Exploring cutting-edge solar technologies that are revolutionizing the renewable energy landscape with improved efficiency and reduced costs.",
   },
   {
     id: "2",
     image: "/icons/poi-windturbine.svg",
     title: "Wind Power Expansion Project",
     category: "Environment",
+    date: "April 12, 2025",
+    description:
+      "New offshore wind farms set to power over 100,000 homes with clean energy, reducing carbon emissions and creating sustainable jobs.",
   },
   {
     id: "3",
     image: "/icons/farm.svg",
     title: "Sustainable Farming Techniques",
     category: "Agriculture",
+    date: "April 8, 2025",
+    description:
+      "Innovative farming practices that conserve water resources while improving crop yields and promoting biodiversity in agricultural ecosystems.",
   },
   {
     id: "4",
     image: "/icons/charging-battery-eco.svg",
     title: "Electric Vehicle Charging Network",
     category: "Transportation",
+    date: "April 5, 2025",
+    description:
+      "Nationwide initiative to expand EV charging infrastructure, making electric vehicles more accessible and promoting cleaner transportation.",
   },
   {
     id: "5",
     image: "/icons/handshake.svg",
     title: "New Climate Partnership Initiative",
     category: "Policy",
+    date: "April 1, 2025",
+    description:
+      "International collaboration brings together policy makers, scientists and industry leaders to accelerate actions against climate change.",
   },
 ];
 
@@ -97,6 +112,8 @@ const newsItems = [
 export default function Home() {
   return (
     <div className="max-w-7xl mx-auto px-4 py-8 font-myriad-pro">
+      <MainNav />
+
       <Headline
         title="Featured Stories"
         subtitle="Explore our latest stories and updates"

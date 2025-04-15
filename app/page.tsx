@@ -1,6 +1,5 @@
 import Headline from "@/components/sections/Headline";
 import NewsList from "@/components/sections/NewsList";
-import MainNav from "@/components/sections/MainNav";
 
 // Sample data for the headline carousel
 const headlineItems = [
@@ -112,19 +111,13 @@ const newsItems = [
 export default function Home() {
   return (
     <div className="max-w-7xl mx-auto px-4 py-8 font-myriad-pro">
-      <MainNav />
-
       <Headline
         title="Featured Stories"
         subtitle="Explore our latest stories and updates"
         items={headlineItems}
       />
 
-      <NewsList
-        title="Latest News"
-        subtitle="Stay informed with our recent articles"
-        items={newsItems}
-      />
+      <NewsList title="Aktuelles" subtitle="News & Events" items={newsItems} />
     </div>
   );
 }

@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { Button } from "../ui/button";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -10,9 +11,9 @@ const Footer = () => {
   return (
     <footer className="w-full bg-gray-50 py-16 pb-8 mt-auto">
       <div className="max-w-7xl mx-auto px-5">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
-          <div className="flex flex-col">
-            <div className="mb-5">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 mb-10">
+          <div className="flex flex-col md:col-span-6 relative bg-cover bg-center" style={{ backgroundImage: 'url("/images/map-caption.svg")' }}>
+            <div className="mb-5 relative z-10">
               <Image
                 src="/logos/voss-energy-logo-with-slogan.svg"
                 alt="Voss Energy"
@@ -21,113 +22,34 @@ const Footer = () => {
                 className="h-auto w-48"
               />
             </div>
-            <p className="text-gray-600 leading-relaxed">
+            <p className="text-gray-600 leading-relaxed relative z-10">
               Providing quality services and solutions since 2023.
             </p>
           </div>
 
-          <div className="flex flex-col">
-            <h3 className="text-xl font-semibold mb-5 text-gray-800">Links</h3>
-            <ul className="space-y-2.5">
-              <li>
-                <Link
-                  href="/"
-                  className="text-gray-600 hover:text-gray-900 transition-colors duration-200 flex items-center gap-2"
-                >
-                  <Image
-                    src="/icons/compass.svg"
-                    alt="Home"
-                    width={16}
-                    height={16}
-                    className="h-4 w-4"
-                  />
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/about"
-                  className="text-gray-600 hover:text-gray-900 transition-colors duration-200 flex items-center gap-2"
-                >
-                  <Image
-                    src="/icons/file-pdf.svg"
-                    alt="About"
-                    width={16}
-                    height={16}
-                    className="h-4 w-4"
-                  />
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/services"
-                  className="text-gray-600 hover:text-gray-900 transition-colors duration-200 flex items-center gap-2"
-                >
-                  <Image
-                    src="/icons/settings-wrench-double.svg"
-                    alt="Services"
-                    width={16}
-                    height={16}
-                    className="h-4 w-4"
-                  />
-                  Services
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/contact"
-                  className="text-gray-600 hover:text-gray-900 transition-colors duration-200 flex items-center gap-2"
-                >
-                  <Image
-                    src="/icons/envelope-simple.svg"
-                    alt="Contact"
-                    width={16}
-                    height={16}
-                    className="h-4 w-4"
-                  />
-                  Contact
-                </Link>
-              </li>
-            </ul>
+          <div className="flex flex-col md:col-span-3">
+            <h3 className="text-xl font-semibold mb-5 text-gray-800">
+              DAS KÖNNTE SIE INTERESSIEREN
+            </h3>
+            <div>
+              <Button>Fläche prüfen</Button>
+              <Button>Kontakt</Button>
+              <Button>Unser Projektablauf</Button>
+              <Button>Investieren</Button>
+              <Button>Projekte</Button>
+              <Button>Antrieb & Anspruch</Button>
+              <Button>News</Button>
+              <Button>FaQ</Button>
+              <Button>JOBS</Button>
+            </div>
           </div>
 
-          <div className="flex flex-col">
-            <h3 className="text-xl font-semibold mb-5 text-gray-800">
-              Contact
-            </h3>
-            <ul className="space-y-2.5">
-              <li className="text-gray-600 flex items-center gap-2">
-                <Image
-                  src="/icons/envelope-sealed.svg"
-                  alt="Email"
-                  width={16}
-                  height={16}
-                  className="h-4 w-4"
-                />
-                info@voss.com
-              </li>
-              <li className="text-gray-600 flex items-center gap-2">
-                <Image
-                  src="/icons/phone.svg"
-                  alt="Phone"
-                  width={16}
-                  height={16}
-                  className="h-4 w-4"
-                />
-                +1 (555) 123-4567
-              </li>
-              <li className="text-gray-600 flex items-center gap-2">
-                <Image
-                  src="/icons/signpost.svg"
-                  alt="Address"
-                  width={16}
-                  height={16}
-                  className="h-4 w-4"
-                />
-                123 Main Street, City, Country
-              </li>
-            </ul>
+          <div className="flex flex-col md:col-span-3">
+            <p className="text-gray-600 mb-2">
+              <b>VOSS Energy</b> steht für die qualifizierte Entwicklung
+              erneuerbarer Energieprojekte mit expliziter Orientierung auf
+              Eigenbetrieb und Standortentwicklung.
+            </p>
           </div>
         </div>
 

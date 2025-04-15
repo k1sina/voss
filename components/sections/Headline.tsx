@@ -79,83 +79,59 @@ export default function Headline({ title, subtitle, items }: HeadlineProps) {
 
   return (
     <section className="mb-12">
-      <div className="mb-8">
-        <h2 className="text-3xl font-bold mb-2 font-myriad-pro">{title}</h2>
-        {subtitle && (
-          <p className="text-zinc-500 font-myriad-pro">{subtitle}</p>
-        )}
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2">
-          <Carousel
-            className="w-full"
-            opts={{ align: "start", slidesToScroll: 1 }}
-            setApi={setApi}
-          >
-            <CarouselContent>
-              {items.map((item) => (
-                <CarouselItem
-                  key={item.id}
-                  className={`sm:basis-1/${
-                    slidesPerView === 2 ? "2" : "3"
-                  } md:basis-1/${slidesPerView}`}
-                >
-                  <div className="p-1 h-full">
-                    <div className="relative overflow-hidden rounded-lg h-full group cursor-pointer bg-zinc-100 dark:bg-zinc-800">
-                      <div className="w-full h-64 relative">
-                        <Image
-                          src={item.image}
-                          alt={item.title}
-                          fill
-                          className="object-contain transition-transform duration-300 group-hover:scale-110 p-4"
-                        />
-                      </div>
-                      {isSmallScreen && (
-                        <div className="p-4 bg-white dark:bg-zinc-900">
-                          {item.category && (
-                            <Badge variant="secondary" className="mb-2">
-                              {item.category}
-                            </Badge>
-                          )}
-                          <h3 className="text-lg font-semibold font-myriad-pro">
-                            {item.title}
-                          </h3>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-
-            {isSmallScreen && (
-              <div className="flex justify-center mt-4 gap-2">
-                <CarouselPrevious className="relative static transform-none" />
-                <div className="flex items-center gap-1 px-2">
-                  {items.map((_, index) => (
-                    <button
-                      key={index}
-                      className={`h-2 w-2 rounded-full transition-colors ${
-                        current === index
-                          ? "bg-zinc-900 dark:bg-zinc-50"
-                          : "bg-zinc-300 dark:bg-zinc-600"
-                      }`}
-                      onClick={() => api?.scrollTo(index)}
-                      aria-label={`Go to slide ${index + 1}`}
+      <div className="relative">
+        {/* Full width carousel */}
+        <Carousel
+          className="w-full"
+          opts={{ align: "start", slidesToScroll: 1 }}
+          setApi={setApi}
+        >
+          <CarouselContent>
+            {items.map((item) => (
+              <CarouselItem
+                key={item.id}
+                className="basis-full sm:basis-full md:basis-full"
+              >
+                <div className="relative overflow-hidden rounded-lg h-[400px] group cursor-pointer">
+                  <div className="w-full h-full relative">
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      fill
+                      className="object-contain transition-transform duration-300 group-hover:scale-105 p-4 bg-gradient-to-br from-zinc-100 to-zinc-200 dark:from-zinc-800 dark:to-zinc-900"
                     />
-                  ))}
+                  </div>
                 </div>
-                <CarouselNext className="relative static transform-none" />
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+
+          {isSmallScreen && (
+            <div className="flex justify-center mt-4 gap-2">
+              <CarouselPrevious className="relative transform-none" />
+              <div className="flex items-center gap-1 px-2">
+                {items.map((_, index) => (
+                  <button
+                    key={index}
+                    className={`h-2 w-2 rounded-full transition-colors ${
+                      current === index
+                        ? "bg-zinc-900 dark:bg-zinc-50"
+                        : "bg-zinc-300 dark:bg-zinc-600"
+                    }`}
+                    onClick={() => api?.scrollTo(index)}
+                    aria-label={`Go to slide ${index + 1}`}
+                  />
+                ))}
               </div>
-            )}
-          </Carousel>
-        </div>
+              <CarouselNext className="relative transform-none" />
+            </div>
+          )}
+        </Carousel>
 
         {/* Card overlay - only on larger screens */}
         {!isSmallScreen && (
-          <div className="lg:col-span-1">
-            <Card className="h-full flex flex-col">
+          <div className="absolute top-0 right-0 w-full max-w-md h-full p-4">
+            <Card className="h-full flex flex-col shadow-lg backdrop-blur-sm bg-white/90 dark:bg-zinc-900/90">
               <CardContent className="flex-1 p-6">
                 <div className="flex justify-between items-start mb-4">
                   {currentItem.category && (

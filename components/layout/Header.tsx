@@ -3,37 +3,46 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import styles from "./Header.module.css";
 
 const Header = () => {
   const pathname = usePathname();
 
   return (
-    <header className={styles.header}>
-      <div className={styles.container}>
-        <div className={styles.logo}>
+    <header className="w-full h-[70px] bg-white shadow-md sticky top-0 left-0 z-100">
+      <div className="max-w-7xl mx-auto px-5 h-full flex items-center justify-between">
+        <div className="flex items-center">
           <Link href="/">
-            <span className={styles.logoText}>Voss</span>
+            <span className="text-3xl font-bold text-gray-800">Voss</span>
           </Link>
         </div>
 
-        <nav className={styles.nav}>
+        <nav className="flex gap-6">
           <Link
             href="/"
-            className={pathname === "/" ? styles.activeLink : styles.link}
+            className={
+              pathname === "/"
+                ? "text-base font-semibold text-black"
+                : "text-base text-gray-600 hover:text-black transition-colors duration-200"
+            }
           >
             Home
           </Link>
           <Link
             href="/about"
-            className={pathname === "/about" ? styles.activeLink : styles.link}
+            className={
+              pathname === "/about"
+                ? "text-base font-semibold text-black"
+                : "text-base text-gray-600 hover:text-black transition-colors duration-200"
+            }
           >
             About
           </Link>
           <Link
             href="/services"
             className={
-              pathname === "/services" ? styles.activeLink : styles.link
+              pathname === "/services"
+                ? "text-base font-semibold text-black"
+                : "text-base text-gray-600 hover:text-black transition-colors duration-200"
             }
           >
             Services
@@ -41,7 +50,9 @@ const Header = () => {
           <Link
             href="/contact"
             className={
-              pathname === "/contact" ? styles.activeLink : styles.link
+              pathname === "/contact"
+                ? "text-base font-semibold text-black"
+                : "text-base text-gray-600 hover:text-black transition-colors duration-200"
             }
           >
             Contact

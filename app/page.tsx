@@ -60,7 +60,7 @@ const newsItems = [
     id: "3",
     title: "Sustainable Agriculture Report",
     description:
-      "New findings show increased adoption of eco-friendly farming practices.",
+      "New findings show increased adoption of eco-friendly farming practices. New findings show increased adoption of eco-friendly farming practices.",
     date: "April 5, 2025",
     category: "Research",
     image: "/icons/farm.svg",
@@ -69,7 +69,7 @@ const newsItems = [
     id: "4",
     title: "Green Building Standards Updated",
     description:
-      "New regulations promote more energy-efficient construction methods.",
+      "New regulations promote more energy-efficient construction methods. New findings show increased adoption of eco-friendly farming practices.New findings show increased adoption of eco-friendly farming practices.",
     date: "March 28, 2025",
     category: "Policy",
     image: "/icons/form-validation-check-square-1.svg",
@@ -97,8 +97,6 @@ const newsItems = [
 export default function Home() {
   return (
     <div className="max-w-7xl mx-auto px-4 py-8 font-myriad-pro">
-      <MainNav />
-
       <Headline
         title="Featured Stories"
         subtitle="Explore our latest stories and updates"

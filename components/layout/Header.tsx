@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
+import MainNav from "@/components/sections/MainNav";
 
 const Header = () => {
   const pathname = usePathname();
@@ -23,77 +24,7 @@ const Header = () => {
             />
           </Link>
         </div>
-
-        <nav className="flex gap-6">
-          <Link
-            href="/"
-            className={
-              pathname === "/"
-                ? "text-base font-semibold text-black flex items-center gap-1.5"
-                : "text-base text-gray-600 hover:text-black transition-colors duration-200 flex items-center gap-1.5"
-            }
-          >
-            <Image
-              src="/icons/compass.svg"
-              alt="Home"
-              width={16}
-              height={16}
-              className="h-4 w-4"
-            />
-            Home
-          </Link>
-          <Link
-            href="/about"
-            className={
-              pathname === "/about"
-                ? "text-base font-semibold text-black flex items-center gap-1.5"
-                : "text-base text-gray-600 hover:text-black transition-colors duration-200 flex items-center gap-1.5"
-            }
-          >
-            <Image
-              src="/icons/file-pdf.svg"
-              alt="About"
-              width={16}
-              height={16}
-              className="h-4 w-4"
-            />
-            About
-          </Link>
-          <Link
-            href="/services"
-            className={
-              pathname === "/services"
-                ? "text-base font-semibold text-black flex items-center gap-1.5"
-                : "text-base text-gray-600 hover:text-black transition-colors duration-200 flex items-center gap-1.5"
-            }
-          >
-            <Image
-              src="/icons/settings-wrench-double.svg"
-              alt="Services"
-              width={16}
-              height={16}
-              className="h-4 w-4"
-            />
-            Services
-          </Link>
-          <Link
-            href="/contact"
-            className={
-              pathname === "/contact"
-                ? "text-base font-semibold text-black flex items-center gap-1.5"
-                : "text-base text-gray-600 hover:text-black transition-colors duration-200 flex items-center gap-1.5"
-            }
-          >
-            <Image
-              src="/icons/envelope-simple.svg"
-              alt="Contact"
-              width={16}
-              height={16}
-              className="h-4 w-4"
-            />
-            Contact
-          </Link>
-        </nav>
+        <MainNav />
       </div>
     </header>
   );

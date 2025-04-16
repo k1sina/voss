@@ -11,6 +11,7 @@ import {
   type CarouselApi,
 } from "@/components/ui/carousel";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { H3, Paragraph, ButtonText } from "@/lib/typography";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
@@ -142,9 +143,9 @@ export default function Headline({ title, subtitle, items }: HeadlineProps) {
                         </Badge>
                       )}
                       {currentItem.date && (
-                        <span className="text-sm text-zinc-500">
+                        <Paragraph className="text-zinc-500 text-sm">
                           {currentItem.date || "15 April, 2025"}
-                        </span>
+                        </Paragraph>
                       )}
                     </div>
                     <div className="flex gap-2">
@@ -165,17 +166,15 @@ export default function Headline({ title, subtitle, items }: HeadlineProps) {
                   <div className="flex-1">
                     <div className="flex items-end-safe gap-4">
                       <div className="flex flex-col">
-                        <h3 className="text-xl font-semibold mb-3 font-myriad-pro">
-                          {currentItem.title}
-                        </h3>
+                        <H3 className="mb-3">{currentItem.title}</H3>
 
-                        <p className="text-zinc-600 dark:text-zinc-300 mb-6 text-sm">
+                        <Paragraph className="text-zinc-600 dark:text-zinc-300 mb-6">
                           {currentItem.description ||
                             "Entdecken Sie mehr über dieses Thema und erfahren Sie, wie unsere Lösungen zur nachhaltigen Zukunft beitragen können."}
-                        </p>
+                        </Paragraph>
                         <div className="flex">
                           <Button>
-                            Zum Artikel
+                            <ButtonText>Zum Artikel</ButtonText>
                             <ArrowRight />
                           </Button>
                         </div>

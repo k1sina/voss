@@ -1,5 +1,5 @@
 import * as React from "react";
-
+import { H4, Paragraph } from "@/lib/typography";
 import { cn } from "@/lib/utils";
 
 function Card({ className, ...props }: React.ComponentProps<"div">) {
@@ -28,23 +28,67 @@ function CardHeader({ className, ...props }: React.ComponentProps<"div">) {
   );
 }
 
-function CardTitle({ className, ...props }: React.ComponentProps<"div">) {
+function CardTitle({
+  className,
+  children,
+  as = "h4",
+  ...props
+}: React.ComponentProps<"div"> & {
+  as?: "h2" | "h3" | "h4" | "h5" | "h6";
+}) {
+  // If children is a simple string and not already a typography component, wrap it in H4
+  const isSimpleText = typeof children === "string";
+  const hasTypographyComponent = React.Children.toArray(children).some(
+    (child) =>
+      React.isValidElement(child) &&
+      (child.type === H4 ||
+        (typeof child.type === "function" && child.type.name?.startsWith("H")))
+  );
+
+  const content =
+    isSimpleText && !hasTypographyComponent ? <H4>{children}</H4> : children;
+
   return (
     <div
       data-slot="card-title"
       className={cn("leading-none", className)}
       {...props}
-    />
+    >
+      {content}
+    </div>
   );
 }
 
-function CardDescription({ className, ...props }: React.ComponentProps<"div">) {
+function CardDescription({
+  className,
+  children,
+  ...props
+}: React.ComponentProps<"div">) {
+  // If children is a simple string and not already a typography component, wrap it in Paragraph
+  const isSimpleText = typeof children === "string";
+  const hasTypographyComponent = React.Children.toArray(children).some(
+    (child) =>
+      React.isValidElement(child) &&
+      (child.type === Paragraph ||
+        (typeof child.type === "function" &&
+          child.type.name?.startsWith("Paragraph")))
+  );
+
+  const content =
+    isSimpleText && !hasTypographyComponent ? (
+      <Paragraph className="text-muted-foreground">{children}</Paragraph>
+    ) : (
+      children
+    );
+
   return (
     <div
       data-slot="card-description"
       className={cn("text-muted-foreground", className)}
       {...props}
-    />
+    >
+      {content}
+    </div>
   );
 }
 

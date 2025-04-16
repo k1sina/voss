@@ -5,6 +5,14 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "../ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+import {
+  Paragraph,
+  ParagraphBold,
+  ParagraphSmall,
+  H4Uppercase,
+  ButtonText,
+  Link as TypographyLink,
+} from "@/lib/typography";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -74,62 +82,65 @@ const Footer = () => {
                     />
                   </Button>
                 </div>
-                <p className="text-gray-600 leading-relaxed">
-                  <b>VOSS Energy GmbH</b> <br />
-                  Admannshäger Damm 20 <br />
-                  18211 Admannshagen-Bargeshagen
-                  <br />
-                  Landkreis Rostock
-                </p>
+                <div className="text-gray-600">
+                  <ParagraphBold>VOSS Energy GmbH</ParagraphBold>
+                  <Paragraph>
+                    Admannshäger Damm 20 <br />
+                    18211 Admannshagen-Bargeshagen
+                    <br />
+                    Landkreis Rostock
+                  </Paragraph>
+                </div>
               </CardContent>
             </Card>
           </div>
           <div className="flex md:col-span-6 bg-background p-8 gap-8">
             <Card className="border-0 shadow-none py-0 flex-1">
               <CardHeader>
-                <CardTitle className="text-xl font-semibold mb-5 text-gray-800">
-                  DAS KÖNNTE SIE INTERESSIEREN
+                <CardTitle>
+                  <H4Uppercase>Das könnte Sie interessieren</H4Uppercase>
                 </CardTitle>
               </CardHeader>
               <CardContent className="px-0">
                 <div>
                   <Button variant="outline" className="mr-2 mb-2">
-                    Fläche prüfen
+                    <ButtonText>Fläche prüfen</ButtonText>
                   </Button>
                   <Button variant="outline" className="mr-2 mb-2">
-                    Kontakt
+                    <ButtonText>Kontakt</ButtonText>
                   </Button>
                   <Button variant="outline" className="mr-2 mb-2">
-                    Unser Projektablauf
+                    <ButtonText>Unser Projektablauf</ButtonText>
                   </Button>
                   <Button variant="outline" className="mr-2 mb-2">
-                    Investieren
+                    <ButtonText>Investieren</ButtonText>
                   </Button>
                   <Button variant="outline" className="mr-2 mb-2">
-                    Projekte
+                    <ButtonText>Projekte</ButtonText>
                   </Button>
                   <Button variant="outline" className="mr-2 mb-2">
-                    Antrieb & Anspruch
+                    <ButtonText>Antrieb & Anspruch</ButtonText>
                   </Button>
                   <Button variant="outline" className="mr-2 mb-2">
-                    News
+                    <ButtonText>News</ButtonText>
                   </Button>
                   <Button variant="outline" className="mr-2 mb-2">
-                    Faq
+                    <ButtonText>Faq</ButtonText>
                   </Button>
                   <Button variant="outline" className="mr-2 mb-2">
-                    Jobs
+                    <ButtonText>Jobs</ButtonText>
                   </Button>
                 </div>
               </CardContent>
             </Card>
             <Card className="border-0 shadow-none py-0 flex-1">
               <CardContent className="px-0">
-                <p className="text-gray-600 mb-2">
-                  <b>VOSS Energy</b> steht für die qualifizierte Entwicklung
-                  erneuerbarer Energieprojekte mit expliziter Orientierung auf
-                  Eigenbetrieb und Standortentwicklung.
-                </p>
+                <Paragraph className="text-gray-600 mb-2">
+                  <span className="font-bold">VOSS Energy</span> steht für die
+                  qualifizierte Entwicklung erneuerbarer Energieprojekte mit
+                  expliziter Orientierung auf Eigenbetrieb und
+                  Standortentwicklung.
+                </Paragraph>
               </CardContent>
             </Card>
           </div>
@@ -140,13 +151,17 @@ const Footer = () => {
         <div className="max-w-7xl mx-auto px-5">
           <div className="flex justify-between">
             <div className="flex justify-center items-center gap-14">
-              <Link href="/">Datenschutz</Link>
-              <Link href="/">Impressum</Link>
+              <Link href="/" className="no-underline">
+                <TypographyLink>Datenschutz</TypographyLink>
+              </Link>
+              <Link href="/" className="no-underline">
+                <TypographyLink>Impressum</TypographyLink>
+              </Link>
             </div>
             <div className="flex justify-center items-center gap-8">
-              <p className="text-gray-500 text-sm text-center">
+              <ParagraphSmall className="text-gray-500 text-center">
                 Ein Unternehmen der VOSS Gruppe
-              </p>
+              </ParagraphSmall>
               <Link href="/">
                 <Image
                   src="/logos/voss-logo.svg"

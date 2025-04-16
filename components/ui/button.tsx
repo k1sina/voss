@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
-
+import { ButtonText } from "@/lib/typography";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
@@ -40,6 +40,7 @@ function Button({
   variant,
   size,
   asChild = false,
+  children,
   ...props
 }: React.ComponentProps<"button"> &
   VariantProps<typeof buttonVariants> & {
@@ -47,12 +48,27 @@ function Button({
   }) {
   const Comp = asChild ? Slot : "button";
 
+  // Check if children already includes ButtonText component
+  const hasButtonTextComponent = React.Children.toArray(children).some(
+    (child) => React.isValidElement(child) && child.type === ButtonText
+  );
+
+  // If text is simple string and not already wrapped in ButtonText, wrap it
+  const wrappedChildren =
+    !hasButtonTextComponent && typeof children === "string" ? (
+      <ButtonText>{children}</ButtonText>
+    ) : (
+      children
+    );
+
   return (
     <Comp
       data-slot="button"
       className={cn(buttonVariants({ variant, size, className }))}
       {...props}
-    />
+    >
+      {wrappedChildren}
+    </Comp>
   );
 }
 

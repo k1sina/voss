@@ -1,5 +1,6 @@
 import Headline from "@/components/sections/Headline";
 import NewsList from "@/components/sections/NewsList";
+import { H1, H2, Introduction } from "@/lib/typography";
 
 // Sample data for the headline carousel
 const headlineItems = [

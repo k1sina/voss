@@ -130,80 +130,84 @@ export default function Headline({ title, subtitle, items }: HeadlineProps) {
 
         {/* Card overlay - only on larger screens */}
         {!isSmallScreen && (
-          <div className="absolute top-0 right-0 w-full max-w-md h-full p-4">
-            <Card className="h-full flex flex-col shadow-lg backdrop-blur-sm bg-white/90 dark:bg-zinc-900/90">
-              <CardContent className="flex-1 p-6">
-                <div className="flex justify-between items-start mb-4">
-                  {currentItem.category && (
-                    <Badge variant="secondary" className="mb-2 text-xs">
-                      {currentItem.category}
-                    </Badge>
-                  )}
-                  {currentItem.date && (
-                    <span className="text-sm text-zinc-500">
-                      {currentItem.date || "15 April, 2025"}
-                    </span>
-                  )}
-                </div>
-
-                <h3 className="text-xl font-semibold mb-3 font-myriad-pro">
-                  {currentItem.title}
-                </h3>
-
-                <p className="text-zinc-600 dark:text-zinc-300 mb-6 text-sm">
-                  {currentItem.description ||
-                    "Entdecken Sie mehr über dieses Thema und erfahren Sie, wie unsere Lösungen zur nachhaltigen Zukunft beitragen können."}
-                </p>
-
-                <div className="flex flex-col gap-4">
-                  <div className="flex items-center justify-center gap-2">
-                    {items.map((_, index) => (
-                      <button
-                        key={index}
-                        className={`h-3 w-3 rounded-full transition-colors ${
-                          current === index
-                            ? "bg-zinc-900 dark:bg-zinc-50"
-                            : "bg-zinc-300 dark:bg-zinc-600"
-                        }`}
-                        onClick={() => api?.scrollTo(index)}
-                        aria-label={`Go to slide ${index + 1}`}
-                      />
-                    ))}
+          <div className="max-w-7xl mx-auto py-8 flex justify-end">
+            <div className="w-full max-w-md mr-4 -mt-48 -mb-32 relative">
+              <Card>
+                <CardContent className="flex-1 p-12">
+                  <div className="flex justify-between align-top">
+                    <div className="flex items-start mb-4 gap-4">
+                      {currentItem.category && (
+                        <Badge variant="secondary" className="mb-2 text-xs">
+                          {currentItem.category}
+                        </Badge>
+                      )}
+                      {currentItem.date && (
+                        <span className="text-sm text-zinc-500">
+                          {currentItem.date || "15 April, 2025"}
+                        </span>
+                      )}
+                    </div>
+                    <div className="flex gap-2">
+                      {items.map((_, index) => (
+                        <button
+                          key={index}
+                          className={`h-2 w-2 rounded-full transition-colors ${
+                            current === index
+                              ? "bg-blue-500 dark:bg-blue-50"
+                              : "bg-blue-100 dark:bg-blue-600"
+                          }`}
+                          onClick={() => api?.scrollTo(index)}
+                          aria-label={`Go to slide ${index + 1}`}
+                        />
+                      ))}
+                    </div>
                   </div>
+                  <div className="flex-1">
+                    <div className="flex items-end-safe gap-4">
+                      <div className="flex flex-col">
+                        <h3 className="text-xl font-semibold mb-3 font-myriad-pro">
+                          {currentItem.title}
+                        </h3>
 
-                  <div className="text-center text-xs text-zinc-500">
-                    {current + 1} / {items.length}
+                        <p className="text-zinc-600 dark:text-zinc-300 mb-6 text-sm">
+                          {currentItem.description ||
+                            "Entdecken Sie mehr über dieses Thema und erfahren Sie, wie unsere Lösungen zur nachhaltigen Zukunft beitragen können."}
+                        </p>
+                        <div className="flex">
+                          <Button>
+                            Zum Artikel
+                            <ArrowRight />
+                          </Button>
+                        </div>
+                      </div>
+                      <div className="flex flex-col">
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="h-12 w-12"
+                          onClick={() => api?.scrollPrev()}
+                          disabled={current === 0}
+                        >
+                          <ArrowLeft className="h-8 w-8" />
+                          <span className="sr-only">Previous slide</span>
+                        </Button>
+                        <line className="border-t border-primary" />
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="h-12 w-12"
+                          onClick={() => api?.scrollNext()}
+                          disabled={current === items.length - 1}
+                        >
+                          <ArrowRight className="h-8 w-8" />
+                          <span className="sr-only">Next slide</span>
+                        </Button>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </CardContent>
-
-              <CardFooter className="flex justify-between items-center p-6 border-t border-zinc-200 dark:border-zinc-800">
-                <div className="flex gap-2">
-                  <Button
-                    variant="outline"
-                    size="icon"
-                    className="h-8 w-8 rounded-full"
-                    onClick={() => api?.scrollPrev()}
-                    disabled={current === 0}
-                  >
-                    <ArrowLeft className="h-4 w-4" />
-                    <span className="sr-only">Previous slide</span>
-                  </Button>
-                  <Button
-                    variant="outline"
-                    size="icon"
-                    className="h-8 w-8 rounded-full"
-                    onClick={() => api?.scrollNext()}
-                    disabled={current === items.length - 1}
-                  >
-                    <ArrowRight className="h-4 w-4" />
-                    <span className="sr-only">Next slide</span>
-                  </Button>
-                </div>
-
-                <Button>Zum Artikel</Button>
-              </CardFooter>
-            </Card>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         )}
       </div>

@@ -110,14 +110,19 @@ const newsItems = [
 
 export default function Home() {
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8 font-myriad-pro">
+    <div className="font-myriad-pro">
       <Headline
         title="Featured Stories"
         subtitle="Explore our latest stories and updates"
         items={headlineItems}
       />
-
-      <NewsList title="Aktuelles" subtitle="News & Events" items={newsItems} />
+      <div className="max-w-7xl mx-auto px-4 py-8">
+        <NewsList
+          title="Aktuelles"
+          subtitle="News & Events"
+          items={newsItems}
+        />
+      </div>
     </div>
   );
 }

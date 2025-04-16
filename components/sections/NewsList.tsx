@@ -12,6 +12,14 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import {
+  H1,
+  H3Uppercase,
+  Paragraph,
+  ParagraphSmall,
+  ParagraphBold,
+  ButtonText,
+} from "@/lib/typography";
 
 interface NewsItem {
   id: string;
@@ -37,19 +45,22 @@ export default function NewsList({ title, subtitle, items }: NewsListProps) {
     // Create and distribute items for masonry layout
     const createColumns = () => {
       if (!items.length) return;
-      
+
       let numColumns = 3; // Default for large screens
       const width = window.innerWidth;
-      
+
       if (width < 768) {
         numColumns = 1; // Mobile: single column
       } else if (width < 1024) {
         numColumns = 2; // Tablet: two columns
       }
-      
+
       // Initialize empty columns
-      const newColumns: NewsItem[][] = Array.from({ length: numColumns }, () => []);
-      
+      const newColumns: NewsItem[][] = Array.from(
+        { length: numColumns },
+        () => []
+      );
+
       // Distribute items across columns
       items.forEach((item, index) => {
         // Place item in the column with the current index modulo number of columns
@@ -57,7 +68,7 @@ export default function NewsList({ title, subtitle, items }: NewsListProps) {
         const columnIndex = index % numColumns;
         newColumns[columnIndex].push(item);
       });
-      
+
       setColumns(newColumns);
     };
 
@@ -69,25 +80,23 @@ export default function NewsList({ title, subtitle, items }: NewsListProps) {
       createColumns();
     };
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, [items]);
 
   return (
     <section className="mb-12">
       <div className="mb-8">
-        {subtitle && (
-          <p className="text-zinc-500 font-myriad-pro">{subtitle}</p>
-        )}
-        <h2 className="text-3xl font-bold mb-2 font-myriad-pro">{title}</h2>
+        {subtitle && <H3Uppercase>{subtitle}</H3Uppercase>}
+        <H1>{title}</H1>
       </div>
 
-      <div 
-        ref={containerRef} 
-        className="flex flex-col md:flex-row gap-6"
-      >
+      <div ref={containerRef} className="flex flex-col md:flex-row gap-6">
         {columns.map((column, columnIndex) => (
-          <div key={`column-${columnIndex}`} className="flex-1 flex flex-col gap-6">
+          <div
+            key={`column-${columnIndex}`}
+            className="flex-1 flex flex-col gap-6"
+          >
             {column.map((item) => (
               <Card
                 key={item.id}
@@ -108,25 +117,27 @@ export default function NewsList({ title, subtitle, items }: NewsListProps) {
                   <div className="flex justify-between items-start mb-2">
                     {item.category && (
                       <Badge variant="outline" className="mb-2 w-fit">
-                        {item.category}
+                        <ParagraphSmall>{item.category}</ParagraphSmall>
                       </Badge>
                     )}
-                    <span className="text-sm text-zinc-500 font-myriad-pro">
+                    <ParagraphSmall className="text-zinc-500">
                       {item.date}
-                    </span>
+                    </ParagraphSmall>
                   </div>
-                  <CardTitle className="font-myriad-pro">{item.title}</CardTitle>
-                  <CardDescription className="font-myriad-pro mt-2">
-                    {item.description}
+                  <CardTitle>
+                    <ParagraphBold>{item.title}</ParagraphBold>
+                  </CardTitle>
+                  <CardDescription className="mt-2">
+                    <Paragraph>{item.description}</Paragraph>
                   </CardDescription>
                 </CardHeader>
                 <CardFooter className="flex justify-end items-center">
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="font-myriad-pro hover:bg-zinc-100 dark:hover:bg-zinc-800"
+                    className="hover:bg-zinc-100 dark:hover:bg-zinc-800"
                   >
-                    Read more →
+                    <ButtonText>Read more →</ButtonText>
                   </Button>
                 </CardFooter>
               </Card>
@@ -136,8 +147,8 @@ export default function NewsList({ title, subtitle, items }: NewsListProps) {
       </div>
 
       <div className="flex justify-center mt-8">
-        <Button variant="outline" className="font-myriad-pro">
-          View all news
+        <Button variant="outline">
+          <ButtonText>View all news</ButtonText>
         </Button>
       </div>
     </section>

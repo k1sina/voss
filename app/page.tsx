@@ -110,7 +110,7 @@ const newsItems = [
 
 export default function Home() {
   return (
-    <div className="font-myriad-pro">
+    <div>
       <Headline
         title="Featured Stories"
         subtitle="Explore our latest stories and updates"

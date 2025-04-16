@@ -11,7 +11,6 @@ import {
   ParagraphSmall,
   H4Uppercase,
   ButtonText,
-  Link as TypographyLink,
 } from "@/lib/typography";
 
 const Footer = () => {
@@ -151,11 +150,11 @@ const Footer = () => {
         <div className="max-w-7xl mx-auto px-5">
           <div className="flex justify-between">
             <div className="flex justify-center items-center gap-14">
-              <Link href="/" className="no-underline">
-                <TypographyLink>Datenschutz</TypographyLink>
+              <Link href="/" className="font-myriad-pro text-[14px] leading-[16.8px] font-normal tracking-[0px] lg:text-[16px] lg:leading-[24px] no-underline">
+                Datenschutz
               </Link>
-              <Link href="/" className="no-underline">
-                <TypographyLink>Impressum</TypographyLink>
+              <Link href="/" className="font-myriad-pro text-[14px] leading-[16.8px] font-normal tracking-[0px] lg:text-[16px] lg:leading-[24px] no-underline">
+                Impressum
               </Link>
             </div>
             <div className="flex justify-center items-center gap-8">

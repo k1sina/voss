@@ -26,6 +26,7 @@ interface HeadlineProps {
     category?: string;
     date?: string;
     description?: string;
+    link?: string;
   }[];
 }
 
@@ -99,7 +100,7 @@ export default function Headline({ title, subtitle, items }: HeadlineProps) {
                       src={item.image}
                       alt={item.title}
                       fill
-                      className="object-contain transition-transform duration-300 group-hover:scale-105 p-4 bg-gradient-to-br from-zinc-100 to-zinc-200 dark:from-zinc-800 dark:to-zinc-900"
+                      className="object-cover transition-transform duration-300 group-hover:scale-105 bg-gradient-to-br from-zinc-100 to-zinc-200 dark:from-zinc-800 dark:to-zinc-900"
                     />
                   </div>
                 </div>
@@ -174,7 +175,9 @@ export default function Headline({ title, subtitle, items }: HeadlineProps) {
                         </Paragraph>
                         <div className="flex">
                           <Button>
-                            <ButtonText>Zum Artikel</ButtonText>
+                            <ButtonText>
+                              {currentItem.link || "Zum Artikel"}
+                            </ButtonText>
                             <ArrowRight />
                           </Button>
                         </div>
@@ -187,7 +190,13 @@ export default function Headline({ title, subtitle, items }: HeadlineProps) {
                           onClick={() => api?.scrollPrev()}
                           disabled={current === 0}
                         >
-                          <ArrowLeft className="h-8 w-8" />
+                          <Image
+                            src="/icons/arrow-right.svg"
+                            alt="Arrow Right"
+                            width={24}
+                            height={24}
+                            className="h-8 w-8"
+                          />
                           <span className="sr-only">Previous slide</span>
                         </Button>
                         <line className="border-t border-primary" />
@@ -198,7 +207,13 @@ export default function Headline({ title, subtitle, items }: HeadlineProps) {
                           onClick={() => api?.scrollNext()}
                           disabled={current === items.length - 1}
                         >
-                          <ArrowRight className="h-8 w-8" />
+                          <Image
+                            src="/icons/arrow-left.svg"
+                            alt="Arrow Right"
+                            width={24}
+                            height={24}
+                            className="h-8 w-8"
+                          />
                           <span className="sr-only">Next slide</span>
                         </Button>
                       </div>

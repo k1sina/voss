@@ -17,26 +17,115 @@ import {
   H3Uppercase,
   Paragraph,
   ParagraphSmall,
-  ParagraphBold,
+  ParagraphBoldUppercase,
   ButtonText,
 } from "@/lib/typography";
 
 interface NewsItem {
-  id: string;
+  category: string;
+  date: string;
   title: string;
   description: string;
-  date: string;
-  category?: string;
+  link: string;
   image?: string;
 }
 
 interface NewsListProps {
   title: string;
   subtitle?: string;
-  items: NewsItem[];
+  items?: NewsItem[];
 }
 
-export default function NewsList({ title, subtitle, items }: NewsListProps) {
+// Default news data
+const defaultNewsItems: NewsItem[] = [
+  {
+    category: "GENEHMIGUNG",
+    date: "09.11.2021",
+    title: 'Genehmigung von 7 Windenergieanlagen im Projekt "Werder/ Lübz"',
+    description:
+      "Bei diesem Projekt handelt es sich um eine langjährige Kooperation mit der in Werder ansässigen Winder Wind & Wärme GmbH.",
+    link: "Zum Artikel",
+    image: "/images/post-1.png",
+  },
+  {
+    category: "UNTERNEHMEN",
+    date: "09.11.2021",
+    title: "Erster Bürgerstromtarif",
+    description:
+      "Köthen Energie GmbH, AEG Vecrum AG und VOSS Energy setzen vergünstigten Bürgerstromtarif um.",
+    link: "Zum Artikel",
+    image: "/images/post-2.png",
+  },
+  {
+    category: "TEAM",
+    date: "09.11.2021",
+    title: "Platz 21 und 27 beim 12. Rostocker Firmenlauf",
+    description:
+      "Bei diesem Projekt handelt es sich um eine langjährige Kooperation mit der in Werder ansässigen Winder Wind & Wärme GmbH.",
+    link: "Zum Artikel",
+    image: "/images/post-3.png",
+  },
+  {
+    category: "UNTERNEHMEN",
+    date: "09.11.2021",
+    title: 'Richtfest von unserem neuen "Zuhause"',
+    description:
+      "Bei diesem Projekt handelt es sich um eine langjährige Kooperation mit der in Werder ansässigen Winder Wind & Wärme GmbH.",
+    link: "Zum Artikel",
+    image: "/images/post-4.png",
+  },
+  {
+    category: "TEAM",
+    date: "09.11.2021",
+    title: "Wir waren mit Freude dabei! – Mein Lauf für Rostock",
+    description:
+      "Köthen Energie GmbH, AEG Vecrum AG und VOSS Energy setzen vergünstigten Bürgerstromtarif um.",
+    link: "Zum Artikel",
+    image: "/images/post-5.png",
+  },
+  {
+    category: "INBETRIEBNAHME",
+    date: "09.11.2021",
+    title: "Inbetriebnahme der drei Nordex Windenergieanlagen in Reckenthyn",
+    description:
+      "Bei diesem Projekt handelt es sich um eine langjährige Kooperation mit der in Werder ansässigen Winder Wind & Wärme GmbH.",
+    link: "Zum Artikel",
+    image: "/images/post-6.png",
+  },
+  {
+    category: "TEAM",
+    date: "09.11.2021",
+    title: "Unser Team hat sich erweitert. Herzlich willkommen Jonas & Thomas",
+    description:
+      "Köthen Energie GmbH, AEG Vecrum AG und VOSS Energy setzen vergünstigten Bürgerstromtarif um.",
+    link: "Zum Artikel",
+    image: "/images/post-7.png",
+  },
+  {
+    category: "TEAM",
+    date: "09.11.2021",
+    title: "Herzlich willkommen Timo und Felix!",
+    description:
+      "Bei diesem Projekt handelt es sich um eine langjährige Kooperation mit der in Werder ansässigen Winder Wind & Wärme GmbH.",
+    link: "Zum Artikel",
+    image: "/images/post-8.png",
+  },
+  {
+    category: "REPOWERING",
+    date: "09.11.2021",
+    title: "Energon E66 Windenergieanlagen in der Prignitz gekauft",
+    description:
+      "Bei diesem Projekt handelt es sich um eine langjährige Kooperation mit der in Werder ansässigen Winder Wind & Wärme GmbH.",
+    link: "Zum Artikel",
+    image: "/images/post-9.png",
+  },
+];
+
+export default function NewsList({
+  title = "Aktuelles",
+  subtitle = "News",
+  items = defaultNewsItems,
+}: NewsListProps) {
   // Split items into columns for the masonry layout
   const [columns, setColumns] = useState<NewsItem[][]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -97,19 +186,19 @@ export default function NewsList({ title, subtitle, items }: NewsListProps) {
             key={`column-${columnIndex}`}
             className="flex-1 flex flex-col gap-6"
           >
-            {column.map((item) => (
+            {column.map((item, itemIndex) => (
               <Card
-                key={item.id}
+                key={`news-${columnIndex}-${itemIndex}`}
                 className="overflow-hidden group hover:shadow-md transition-shadow duration-300"
               >
                 {item.image && (
-                  <div className="relative h-48 w-full overflow-hidden bg-gradient-to-br from-zinc-100 to-zinc-200 dark:from-zinc-800 dark:to-zinc-900 flex justify-center items-center">
+                  <div className="relative h-60 w-full overflow-hidden">
                     <Image
                       src={item.image}
                       alt={item.title}
-                      width={80}
-                      height={80}
-                      className="w-20 h-20 transition-transform duration-300 group-hover:scale-110"
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      className="object-cover transition-transform duration-300 group-hover:scale-105"
                     />
                   </div>
                 )}
@@ -117,7 +206,9 @@ export default function NewsList({ title, subtitle, items }: NewsListProps) {
                   <div className="flex justify-between items-start mb-2">
                     {item.category && (
                       <Badge variant="outline" className="mb-2 w-fit">
-                        <ParagraphSmall>{item.category}</ParagraphSmall>
+                        <ParagraphBoldUppercase className="text-xs">
+                          {item.category}
+                        </ParagraphBoldUppercase>
                       </Badge>
                     )}
                     <ParagraphSmall className="text-zinc-500">
@@ -125,7 +216,9 @@ export default function NewsList({ title, subtitle, items }: NewsListProps) {
                     </ParagraphSmall>
                   </div>
                   <CardTitle>
-                    <ParagraphBold>{item.title}</ParagraphBold>
+                    <Paragraph className="font-semibold">
+                      {item.title}
+                    </Paragraph>
                   </CardTitle>
                   <CardDescription className="mt-2">
                     <Paragraph>{item.description}</Paragraph>
@@ -137,7 +230,14 @@ export default function NewsList({ title, subtitle, items }: NewsListProps) {
                     size="sm"
                     className="hover:bg-zinc-100 dark:hover:bg-zinc-800"
                   >
-                    <ButtonText>Read more →</ButtonText>
+                    <ButtonText>{item.link}</ButtonText>
+                    <Image
+                      src="/icons/caret-right.svg"
+                      alt="Arrow Right"
+                      width={16}
+                      height={16}
+                      className="ml-1"
+                    />
                   </Button>
                 </CardFooter>
               </Card>
@@ -148,7 +248,7 @@ export default function NewsList({ title, subtitle, items }: NewsListProps) {
 
       <div className="flex justify-center mt-8">
         <Button variant="outline">
-          <ButtonText>View all news</ButtonText>
+          <ButtonText>Alle News anzeigen</ButtonText>
         </Button>
       </div>
     </section>

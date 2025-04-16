@@ -129,11 +129,25 @@ export default function NewsList({
   // Split items into columns for the masonry layout
   const [columns, setColumns] = useState<NewsItem[][]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
+  const [activeFilter, setActiveFilter] = useState<string>("ALL");
+  const [filteredItems, setFilteredItems] = useState<NewsItem[]>(items);
+
+  // Extract unique categories
+  const categories = ["ALL", ...new Set(items.map((item) => item.category))];
+
+  // Filter items based on active filter
+  useEffect(() => {
+    if (activeFilter === "ALL") {
+      setFilteredItems(items);
+    } else {
+      setFilteredItems(items.filter((item) => item.category === activeFilter));
+    }
+  }, [activeFilter, items]);
 
   useEffect(() => {
     // Create and distribute items for masonry layout
     const createColumns = () => {
-      if (!items.length) return;
+      if (!filteredItems.length) return;
 
       let numColumns = 3; // Default for large screens
       const width = window.innerWidth;
@@ -151,7 +165,7 @@ export default function NewsList({
       );
 
       // Distribute items across columns
-      items.forEach((item, index) => {
+      filteredItems.forEach((item, index) => {
         // Place item in the column with the current index modulo number of columns
         // This ensures items are distributed evenly across columns
         const columnIndex = index % numColumns;
@@ -171,13 +185,35 @@ export default function NewsList({
 
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, [items]);
+  }, [filteredItems]);
 
   return (
     <section className="mb-12">
       <div className="mb-8">
         {subtitle && <H3Uppercase>{subtitle}</H3Uppercase>}
         <H1>{title}</H1>
+      </div>
+
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 flex-wrap gap-4">
+        <div className="flex flex-wrap gap-2">
+          {categories.map((category) => (
+            <Button
+              key={category}
+              variant={activeFilter === category ? "default" : "outline"}
+              size="sm"
+              onClick={() => setActiveFilter(category)}
+              className="transition-all duration-300"
+            >
+              <ButtonText>{category === "ALL" ? "Alle" : category}</ButtonText>
+            </Button>
+          ))}
+        </div>
+        <div>
+          <Paragraph className="text-gray-500">
+            {filteredItems.length}{" "}
+            {filteredItems.length === 1 ? "News" : "News"}
+          </Paragraph>
+        </div>
       </div>
 
       <div ref={containerRef} className="flex flex-col md:flex-row gap-6">

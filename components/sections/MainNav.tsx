@@ -2,15 +2,9 @@
 
 import * as React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import {
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
-import { MenuText } from "@/lib/typography";
+import { ButtonText } from "@/lib/typography";
 
 // Main navigation items without subcategories
 const navItems = [
@@ -41,22 +35,31 @@ const navItems = [
 ];
 
 export default function MainNav() {
+  const pathname = usePathname();
+
   return (
-    <NavigationMenu>
-      <NavigationMenuList>
-        {navItems.map((item) => (
-          <NavigationMenuItem key={item.title}>
-            <NavigationMenuLink asChild>
+    <nav className="flex">
+      <ul className="flex space-x-14">
+        {navItems.map((item) => {
+          const isActive = pathname === item.href;
+
+          return (
+            <li key={item.title}>
               <Link
                 href={item.href}
-                className={cn(navigationMenuTriggerStyle())}
+                className={cn(
+                  "relative block",
+                  "after:absolute after:bottom-0 after:left-0 after:h-0.25 after:w-0 after:bg-primary",
+                  "hover:after:w-full",
+                  isActive && "after:w-full"
+                )}
               >
-                <MenuText>{item.title}</MenuText>
+                <ButtonText>{item.title}</ButtonText>
               </Link>
-            </NavigationMenuLink>
-          </NavigationMenuItem>
-        ))}
-      </NavigationMenuList>
-    </NavigationMenu>
+            </li>
+          );
+        })}
+      </ul>
+    </nav>
   );
 }

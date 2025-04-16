@@ -11,6 +11,8 @@ import {
   ParagraphSmall,
   H4Uppercase,
   ButtonText,
+  ParagraphSmallUppercaseBold,
+  ParagraphBoldUppercase,
 } from "@/lib/typography";
 
 const Footer = () => {
@@ -94,54 +96,64 @@ const Footer = () => {
             </Card>
           </div>
           <div className="flex md:col-span-6 bg-background p-8 gap-8">
-            <Card className="border-0 shadow-none py-0 flex-1">
-              <CardHeader>
-                <CardTitle>
-                  <H4Uppercase>Das könnte Sie interessieren</H4Uppercase>
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="px-0">
-                <div>
-                  <Button variant="outline" className="mr-2 mb-2">
-                    <ButtonText>Fläche prüfen</ButtonText>
-                  </Button>
-                  <Button variant="outline" className="mr-2 mb-2">
-                    <ButtonText>Kontakt</ButtonText>
-                  </Button>
-                  <Button variant="outline" className="mr-2 mb-2">
-                    <ButtonText>Unser Projektablauf</ButtonText>
-                  </Button>
-                  <Button variant="outline" className="mr-2 mb-2">
-                    <ButtonText>Investieren</ButtonText>
-                  </Button>
-                  <Button variant="outline" className="mr-2 mb-2">
-                    <ButtonText>Projekte</ButtonText>
-                  </Button>
-                  <Button variant="outline" className="mr-2 mb-2">
-                    <ButtonText>Antrieb & Anspruch</ButtonText>
-                  </Button>
-                  <Button variant="outline" className="mr-2 mb-2">
-                    <ButtonText>News</ButtonText>
-                  </Button>
-                  <Button variant="outline" className="mr-2 mb-2">
-                    <ButtonText>Faq</ButtonText>
-                  </Button>
-                  <Button variant="outline" className="mr-2 mb-2">
-                    <ButtonText>Jobs</ButtonText>
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-            <Card className="border-0 shadow-none py-0 flex-1">
-              <CardContent className="px-0">
-                <Paragraph className="text-gray-600 mb-2">
-                  <span className="font-bold">VOSS Energy</span> steht für die
-                  qualifizierte Entwicklung erneuerbarer Energieprojekte mit
-                  expliziter Orientierung auf Eigenbetrieb und
-                  Standortentwicklung.
-                </Paragraph>
-              </CardContent>
-            </Card>
+            <div className="border-0 shadow-none py-0 flex-1">
+              <ParagraphBoldUppercase>
+                Das könnte Sie interessieren
+              </ParagraphBoldUppercase>
+              <div className="mt-4">
+                <Button variant="outline" className="mr-2 mb-2">
+                  <ParagraphSmallUppercaseBold>
+                    Fläche prüfen
+                  </ParagraphSmallUppercaseBold>
+                </Button>
+                <Button variant="outline" className="mr-2 mb-2">
+                  <ParagraphSmallUppercaseBold>
+                    Kontakt
+                  </ParagraphSmallUppercaseBold>
+                </Button>
+                <Button variant="outline" className="mr-2 mb-2">
+                  <ParagraphSmallUppercaseBold>
+                    Unser Projektablauf
+                  </ParagraphSmallUppercaseBold>
+                </Button>
+                <Button variant="outline" className="mr-2 mb-2">
+                  <ParagraphSmallUppercaseBold>
+                    Investieren
+                  </ParagraphSmallUppercaseBold>
+                </Button>
+                <Button variant="outline" className="mr-2 mb-2">
+                  <ParagraphSmallUppercaseBold>
+                    Projekte
+                  </ParagraphSmallUppercaseBold>
+                </Button>
+                <Button variant="outline" className="mr-2 mb-2">
+                  <ParagraphSmallUppercaseBold>
+                    Antrieb & Anspruch
+                  </ParagraphSmallUppercaseBold>
+                </Button>
+                <Button variant="outline" className="mr-2 mb-2">
+                  <ParagraphSmallUppercaseBold>
+                    News
+                  </ParagraphSmallUppercaseBold>
+                </Button>
+                <Button variant="outline" className="mr-2 mb-2">
+                  <ParagraphSmallUppercaseBold>Faq</ParagraphSmallUppercaseBold>
+                </Button>
+                <Button variant="outline" className="mr-2 mb-2">
+                  <ParagraphSmallUppercaseBold>
+                    Jobs
+                  </ParagraphSmallUppercaseBold>
+                </Button>
+              </div>
+            </div>
+            <div className="border-0 shadow-none py-0 flex-1">
+              <Paragraph className="text-gray-600 mb-2">
+                <span className="font-bold">VOSS Energy</span> steht für die
+                qualifizierte Entwicklung erneuerbarer Energieprojekte mit
+                expliziter Orientierung auf Eigenbetrieb und
+                Standortentwicklung.
+              </Paragraph>
+            </div>
           </div>
         </div>
       </div>
@@ -150,10 +162,16 @@ const Footer = () => {
         <div className="max-w-7xl mx-auto px-5">
           <div className="flex justify-between">
             <div className="flex justify-center items-center gap-14">
-              <Link href="/" className="font-myriad-pro text-[14px] leading-[16.8px] font-normal tracking-[0px] lg:text-[16px] lg:leading-[24px] no-underline">
+              <Link
+                href="/"
+                className="font-myriad-pro text-[14px] leading-[16.8px] font-normal tracking-[0px] lg:text-[16px] lg:leading-[24px] no-underline"
+              >
                 Datenschutz
               </Link>
-              <Link href="/" className="font-myriad-pro text-[14px] leading-[16.8px] font-normal tracking-[0px] lg:text-[16px] lg:leading-[24px] no-underline">
+              <Link
+                href="/"
+                className="font-myriad-pro text-[14px] leading-[16.8px] font-normal tracking-[0px] lg:text-[16px] lg:leading-[24px] no-underline"
+              >
                 Impressum
               </Link>
             </div>

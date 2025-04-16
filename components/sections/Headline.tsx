@@ -15,6 +15,7 @@ import { H3, Paragraph, ButtonText } from "@/lib/typography";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
+import { Separator } from "../ui/separator";
 
 interface HeadlineProps {
   title: string;
@@ -100,7 +101,7 @@ export default function Headline({ title, subtitle, items }: HeadlineProps) {
                       src={item.image}
                       alt={item.title}
                       fill
-                      className="object-cover transition-transform duration-300 group-hover:scale-105 bg-gradient-to-br from-zinc-100 to-zinc-200 dark:from-zinc-800 dark:to-zinc-900"
+                      className="object-cover transition-transform duration-300 bg-gradient-to-br from-zinc-100 to-zinc-200 dark:from-zinc-800 dark:to-zinc-900"
                     />
                   </div>
                 </div>
@@ -199,7 +200,7 @@ export default function Headline({ title, subtitle, items }: HeadlineProps) {
                           />
                           <span className="sr-only">Previous slide</span>
                         </Button>
-                        <line className="border-t border-primary" />
+                        <Separator className="border-t border-primary" />
                         <Button
                           variant="ghost"
                           size="icon"

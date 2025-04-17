@@ -11,10 +11,16 @@ import {
   type CarouselApi,
 } from "@/components/ui/carousel";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { H3, Paragraph, ButtonText } from "@/lib/typography";
+import {
+  H3,
+  Paragraph,
+  ButtonText,
+  ParagraphSmall,
+  ParagraphSmallUppercaseBold,
+} from "@/lib/typography";
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { Separator } from "../ui/separator";
 
 interface HeadlineProps {
@@ -135,19 +141,21 @@ export default function Headline({ title, subtitle, items }: HeadlineProps) {
         {!isSmallScreen && (
           <div className="max-w-7xl mx-auto py-8 flex justify-end">
             <div className="w-full max-w-md mr-4 -mt-48 -mb-32 relative">
-              <Card>
+              <Card className="py-0">
                 <CardContent className="flex-1 p-12">
                   <div className="flex justify-between align-top">
-                    <div className="flex items-start mb-4 gap-4">
+                    <div className="flex items-center mb-4 gap-4 ">
                       {currentItem.category && (
-                        <Badge variant="secondary" className="mb-2 text-xs">
-                          {currentItem.category}
+                        <Badge variant="outline">
+                          <ParagraphSmallUppercaseBold>
+                            {currentItem.category}
+                          </ParagraphSmallUppercaseBold>
                         </Badge>
                       )}
                       {currentItem.date && (
-                        <Paragraph className="text-zinc-500 text-sm">
+                        <ParagraphSmall>
                           {currentItem.date || "15 April, 2025"}
-                        </Paragraph>
+                        </ParagraphSmall>
                       )}
                     </div>
                     <div className="flex gap-2">
@@ -156,8 +164,8 @@ export default function Headline({ title, subtitle, items }: HeadlineProps) {
                           key={index}
                           className={`h-2 w-2 rounded-full transition-colors ${
                             current === index
-                              ? "bg-blue-500 dark:bg-blue-50"
-                              : "bg-blue-100 dark:bg-blue-600"
+                              ? "bg-primary dark:bg-primary"
+                              : "bg-gray-200 dark:bg-gray-600"
                           }`}
                           onClick={() => api?.scrollTo(index)}
                           aria-label={`Go to slide ${index + 1}`}
@@ -170,7 +178,7 @@ export default function Headline({ title, subtitle, items }: HeadlineProps) {
                       <div className="flex flex-col">
                         <H3 className="mb-3">{currentItem.title}</H3>
 
-                        <Paragraph className="text-zinc-600 dark:text-zinc-300 mb-6">
+                        <Paragraph className="mb-6">
                           {currentItem.description ||
                             "Entdecken Sie mehr über dieses Thema und erfahren Sie, wie unsere Lösungen zur nachhaltigen Zukunft beitragen können."}
                         </Paragraph>
@@ -179,15 +187,15 @@ export default function Headline({ title, subtitle, items }: HeadlineProps) {
                             <ButtonText>
                               {currentItem.link || "Zum Artikel"}
                             </ButtonText>
-                            <ArrowRight />
+                            <ChevronRight />
                           </Button>
                         </div>
                       </div>
                       <div className="flex flex-col">
                         <Button
-                          variant="ghost"
+                          variant="outline"
                           size="icon"
-                          className="h-12 w-12"
+                          className="h-12 w-12 border-0"
                           onClick={() => api?.scrollPrev()}
                           disabled={current === 0}
                         >
@@ -196,15 +204,15 @@ export default function Headline({ title, subtitle, items }: HeadlineProps) {
                             alt="Arrow Right"
                             width={24}
                             height={24}
-                            className="h-8 w-8"
+                            className="h-8 w-8 hover:color-inverse"
                           />
                           <span className="sr-only">Previous slide</span>
                         </Button>
                         <Separator className="border-t border-primary" />
                         <Button
-                          variant="ghost"
+                          variant="outline"
                           size="icon"
-                          className="h-12 w-12"
+                          className="h-12 w-12 border-0"
                           onClick={() => api?.scrollNext()}
                           disabled={current === items.length - 1}
                         >
@@ -213,7 +221,7 @@ export default function Headline({ title, subtitle, items }: HeadlineProps) {
                             alt="Arrow Right"
                             width={24}
                             height={24}
-                            className="h-8 w-8"
+                            className="h-8 w-8 hover:color-inverse"
                           />
                           <span className="sr-only">Next slide</span>
                         </Button>

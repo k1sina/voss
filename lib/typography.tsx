@@ -245,7 +245,7 @@ export function ButtonText({ children, className, ...props }: TypographyProps) {
   return (
     <span
       className={cn(
-        "font-myriad-pro text-[14px] leading-[16px] font-semibold tracking-[0px] lg:text-[16px] lg:leading-[18px] transition-all duration-300",
+        "font-myriad-pro text-[14px] leading-[16px] font-semibold tracking-[0px] lg:text-[16px] lg:leading-[18px] transition-all duration-300 mt-0.5",
         className
       )}
       {...props}

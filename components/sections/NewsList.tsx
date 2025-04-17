@@ -19,7 +19,10 @@ import {
   ParagraphSmall,
   ParagraphBoldUppercase,
   ButtonText,
+  H4,
+  ParagraphSmallUppercaseBold,
 } from "@/lib/typography";
+import { ChevronRight } from "lucide-react";
 
 interface NewsItem {
   category: string;
@@ -204,28 +207,30 @@ export default function NewsList({
               onClick={() => setActiveFilter(category)}
               className="transition-all duration-300"
             >
-              <ButtonText>{category === "ALL" ? "Alle" : category}</ButtonText>
+              <ButtonText>{category === "ALL" ? "ALLE" : category}</ButtonText>
             </Button>
           ))}
         </div>
         <div>
-          <Paragraph className="text-gray-500">
+          <Paragraph>
             {filteredItems.length}{" "}
-            {filteredItems.length === 1 ? "News" : "News"}
+            {filteredItems.length === 1
+              ? "Artikel gefunden"
+              : "Artikel gefunden"}
           </Paragraph>
         </div>
       </div>
 
-      <div ref={containerRef} className="flex flex-col md:flex-row gap-6">
+      <div ref={containerRef} className="flex flex-col md:flex-row gap-8">
         {columns.map((column, columnIndex) => (
           <div
             key={`column-${columnIndex}`}
-            className="flex-1 flex flex-col gap-6"
+            className="flex-1 flex flex-col gap-8"
           >
             {column.map((item, itemIndex) => (
               <Card
                 key={`news-${columnIndex}-${itemIndex}`}
-                className="overflow-hidden group hover:shadow-md transition-shadow duration-300"
+                className="overflow-hidden group hover:shadow-md transition-shadow duration-300 pt-0 pb-8 gap-0"
               >
                 {item.image && (
                   <div className="relative h-60 w-full overflow-hidden">
@@ -238,42 +243,30 @@ export default function NewsList({
                     />
                   </div>
                 )}
-                <CardHeader>
-                  <div className="flex justify-between items-start mb-2">
+                <CardHeader className="gap-4 px-8">
+                  <div className="flex items-baseline gap-4 pt-8">
                     {item.category && (
-                      <Badge variant="outline" className="mb-2 w-fit">
-                        <ParagraphBoldUppercase className="text-xs">
+                      <Badge variant="outline" className="w-fit">
+                        <ParagraphSmallUppercaseBold>
                           {item.category}
-                        </ParagraphBoldUppercase>
+                        </ParagraphSmallUppercaseBold>
                       </Badge>
                     )}
-                    <ParagraphSmall className="text-zinc-500">
+                    <ParagraphSmall className="text-muted-foreground">
                       {item.date}
                     </ParagraphSmall>
                   </div>
                   <CardTitle>
-                    <Paragraph className="font-semibold">
-                      {item.title}
-                    </Paragraph>
+                    <H4>{item.title}</H4>
                   </CardTitle>
-                  <CardDescription className="mt-2">
-                    <Paragraph>{item.description}</Paragraph>
+                  <CardDescription>
+                    <Paragraph className="">{item.description}</Paragraph>
                   </CardDescription>
                 </CardHeader>
-                <CardFooter className="flex justify-end items-center">
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    className="hover:bg-zinc-100 dark:hover:bg-zinc-800"
-                  >
+                <CardFooter className="flex justify-end items-center px-8 pt-4">
+                  <Button variant="ghost" size="sm">
                     <ButtonText>{item.link}</ButtonText>
-                    <Image
-                      src="/icons/caret-right.svg"
-                      alt="Arrow Right"
-                      width={16}
-                      height={16}
-                      className="ml-1"
-                    />
+                    <ChevronRight className="text-primary" />
                   </Button>
                 </CardFooter>
               </Card>
@@ -283,8 +276,8 @@ export default function NewsList({
       </div>
 
       <div className="flex justify-center mt-8">
-        <Button variant="outline">
-          <ButtonText>Alle News anzeigen</ButtonText>
+        <Button>
+          <ButtonText>Weitere Beiträge laden</ButtonText>
         </Button>
       </div>
     </section>

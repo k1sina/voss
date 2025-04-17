@@ -35,8 +35,8 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-12">
           <div className="flex flex-col md:col-span-6">
             <Card className="relative z-10 max-w-md -mt-16 p-0 shadow-md">
-              <CardContent className="p-6">
-                <div className="mb-5">
+              <CardContent className="p-8">
+                <div className="mb-8">
                   <Image
                     src="/logos/voss-energy-logo-with-slogan.svg"
                     alt="Voss Energy"
@@ -45,45 +45,7 @@ const Footer = () => {
                     className="h-auto w-48"
                   />
                 </div>
-                <div className="flex items-center mb-5">
-                  <Button className="mr-2" variant="outline">
-                    <Image
-                      src="/icons/phone.svg"
-                      alt="Phone"
-                      width={20}
-                      height={20}
-                      className="h-5 w-5"
-                    />
-                  </Button>
-                  <Button className="mr-2" variant="outline">
-                    <Image
-                      src="/icons/envelope-simple.svg"
-                      alt="Email"
-                      width={20}
-                      height={20}
-                      className="h-5 w-5"
-                    />
-                  </Button>
-                  <Button className="mr-2" variant="outline">
-                    <Image
-                      src="/icons/variant78.svg"
-                      alt="Linkedin"
-                      width={20}
-                      height={20}
-                      className="h-5 w-5"
-                    />
-                  </Button>
-                  <Button className="mr-2" variant="outline">
-                    <Image
-                      src="/icons/variant82.svg"
-                      alt="Youtube"
-                      width={20}
-                      height={20}
-                      className="h-5 w-5"
-                    />
-                  </Button>
-                </div>
-                <div className="text-gray-600">
+                <div className="mb-8">
                   <ParagraphBold>VOSS Energy GmbH</ParagraphBold>
                   <Paragraph>
                     Admannshäger Damm 20 <br />
@@ -91,6 +53,44 @@ const Footer = () => {
                     <br />
                     Landkreis Rostock
                   </Paragraph>
+                </div>
+                <div className="flex items-center">
+                  <Button className="w-10 h-10 p-0 mr-2" variant="outline">
+                    <Image
+                      src="/icons/phone.svg"
+                      alt="Phone"
+                      width={28}
+                      height={28}
+                      className="h-7 w-7"
+                    />
+                  </Button>
+                  <Button className="w-10 h-10 p-0 mr-2" variant="outline">
+                    <Image
+                      src="/icons/envelope-simple.svg"
+                      alt="Email"
+                      width={28}
+                      height={28}
+                      className="h-7 w-7"
+                    />
+                  </Button>
+                  <Button className="w-10 h-10 p-0 mr-2" variant="outline">
+                    <Image
+                      src="/icons/variant78.svg"
+                      alt="Linkedin"
+                      width={28}
+                      height={28}
+                      className="h-7 w-7"
+                    />
+                  </Button>
+                  <Button className="w-10 h-10 p-0 mr-2" variant="outline">
+                    <Image
+                      src="/icons/variant82.svg"
+                      alt="Youtube"
+                      width={28}
+                      height={28}
+                      className="h-7 w-7"
+                    />
+                  </Button>
                 </div>
               </CardContent>
             </Card>
@@ -162,17 +162,11 @@ const Footer = () => {
         <div className="max-w-7xl mx-auto px-5">
           <div className="flex justify-between">
             <div className="flex justify-center items-center gap-14">
-              <Link
-                href="/"
-                className="font-myriad-pro text-[14px] leading-[16.8px] font-normal tracking-[0px] lg:text-[16px] lg:leading-[24px] no-underline"
-              >
-                Datenschutz
+              <Link href="/">
+                <ParagraphSmall>Datenschutz</ParagraphSmall>
               </Link>
-              <Link
-                href="/"
-                className="font-myriad-pro text-[14px] leading-[16.8px] font-normal tracking-[0px] lg:text-[16px] lg:leading-[24px] no-underline"
-              >
-                Impressum
+              <Link href="/">
+                <ParagraphSmall>Impressum</ParagraphSmall>
               </Link>
             </div>
             <div className="flex justify-center items-center gap-8">

@@ -7,7 +7,7 @@ function Card({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="card"
       className={cn(
-        "bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm",
+        "bg-card text-card-foreground flex flex-col gap-6 border py-6 shadow-sm",
         className
       )}
       {...props}
@@ -76,17 +76,13 @@ function CardDescription({
 
   const content =
     isSimpleText && !hasTypographyComponent ? (
-      <Paragraph className="text-muted-foreground">{children}</Paragraph>
+      <Paragraph>{children}</Paragraph>
     ) : (
       children
     );
 
   return (
-    <div
-      data-slot="card-description"
-      className={cn("text-muted-foreground", className)}
-      {...props}
-    >
+    <div data-slot="card-description" className={cn("", className)} {...props}>
       {content}
     </div>
   );

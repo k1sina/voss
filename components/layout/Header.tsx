@@ -44,7 +44,6 @@ const navItems = [
 ];
 
 const Header = () => {
-  const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (

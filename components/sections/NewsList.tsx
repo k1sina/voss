@@ -22,7 +22,14 @@ import {
   H4,
   ParagraphSmallUppercaseBold,
 } from "@/lib/typography";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, Settings2 } from "lucide-react";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
 interface NewsItem {
   category: string;
@@ -134,6 +141,7 @@ export default function NewsList({
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeFilter, setActiveFilter] = useState<string>("ALL");
   const [filteredItems, setFilteredItems] = useState<NewsItem[]>(items);
+  const [isSheetOpen, setIsSheetOpen] = useState(false);
 
   // Extract unique categories
   const categories = ["ALL", ...new Set(items.map((item) => item.category))];
@@ -280,6 +288,43 @@ export default function NewsList({
           <ButtonText>Weitere Beiträge laden</ButtonText>
         </Button>
       </div>
+
+      {/* Mobile Filter Button and Sheet */}
+      <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
+        <SheetTrigger asChild>
+          <Button
+            className="fixed bottom-0 right-0 shadow-lg md:hidden flex gap-2 z-50 w-full"
+            size={"lg"}
+          >
+            <Settings2 className="w-4 h-4" />
+            Filtern
+          </Button>
+        </SheetTrigger>
+        <SheetContent side="bottom" className="px-4 py-6 rounded-t-xl">
+          <SheetHeader className="mb-4">
+            <SheetTitle>Filter nach Kategorie</SheetTitle>
+          </SheetHeader>
+          <div className="flex flex-wrap gap-3">
+            {categories.map((category) => (
+              <Button
+                key={category}
+                variant={activeFilter === category ? "default" : "outline"}
+                className={`font-semibold ${
+                  activeFilter === category
+                    ? "bg-primary text-white"
+                    : "border-gray-300"
+                }`}
+                onClick={() => {
+                  setActiveFilter(category);
+                  setIsSheetOpen(false);
+                }}
+              >
+                {category}
+              </Button>
+            ))}
+          </div>
+        </SheetContent>
+      </Sheet>
     </section>
   );
 }

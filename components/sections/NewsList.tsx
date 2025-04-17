@@ -198,7 +198,7 @@ export default function NewsList({
       </div>
 
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 flex-wrap gap-4">
-        <div className="flex flex-wrap gap-2">
+        <div className="hidden md:flex flex-wrap gap-2">
           {categories.map((category) => (
             <Button
               key={category}

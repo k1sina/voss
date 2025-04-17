@@ -41,7 +41,6 @@ export default function Headline({ title, subtitle, items }: HeadlineProps) {
   const [slidesPerView, setSlidesPerView] = useState(3);
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
-  const [isSmallScreen, setIsSmallScreen] = useState(false);
 
   // Track the current slide
   useEffect(() => {
@@ -63,15 +62,7 @@ export default function Headline({ title, subtitle, items }: HeadlineProps) {
   useEffect(() => {
     const handleResize = () => {
       const width = window.innerWidth;
-      setIsSmallScreen(width < 1024);
-
-      if (width < 640) {
-        setSlidesPerView(1);
-      } else if (width < 1024) {
-        setSlidesPerView(2);
-      } else {
-        setSlidesPerView(2); // Changed to 2 to make room for the card
-      }
+      setSlidesPerView(1);
     };
 
     // Set initial value
@@ -87,7 +78,7 @@ export default function Headline({ title, subtitle, items }: HeadlineProps) {
   const currentItem = items[current] || items[0];
 
   return (
-    <section className="mb-12">
+    <section className="hidden md:block mb-12">
       <div className="relative">
         {/* Full width carousel */}
         <Carousel
@@ -114,125 +105,102 @@ export default function Headline({ title, subtitle, items }: HeadlineProps) {
               </CarouselItem>
             ))}
           </CarouselContent>
-
-          {isSmallScreen && (
-            <div className="flex justify-center mt-4 gap-2">
-              <CarouselPrevious className="relative transform-none" />
-              <div className="flex items-center gap-1 px-2">
-                {items.map((_, index) => (
-                  <button
-                    key={index}
-                    className={`h-2 w-2 rounded-full transition-colors ${
-                      current === index
-                        ? "bg-zinc-900 dark:bg-zinc-50"
-                        : "bg-zinc-300 dark:bg-zinc-600"
-                    }`}
-                    onClick={() => api?.scrollTo(index)}
-                    aria-label={`Go to slide ${index + 1}`}
-                  />
-                ))}
-              </div>
-              <CarouselNext className="relative transform-none" />
-            </div>
-          )}
         </Carousel>
 
         {/* Card overlay - only on larger screens */}
-        {!isSmallScreen && (
-          <div className="max-w-7xl mx-auto py-8 flex justify-end">
-            <div className="w-full max-w-md mr-4 -mt-48 -mb-32 relative">
-              <Card className="py-0">
-                <CardContent className="flex-1 p-12">
-                  <div className="flex justify-between align-top">
-                    <div className="flex items-center mb-4 gap-4 ">
-                      {currentItem.category && (
-                        <Badge variant="outline">
-                          <ParagraphSmallUppercaseBold>
-                            {currentItem.category}
-                          </ParagraphSmallUppercaseBold>
-                        </Badge>
-                      )}
-                      {currentItem.date && (
-                        <ParagraphSmall>
-                          {currentItem.date || "15 April, 2025"}
-                        </ParagraphSmall>
-                      )}
-                    </div>
-                    <div className="flex gap-2">
-                      {items.map((_, index) => (
-                        <button
-                          key={index}
-                          className={`h-2 w-2 rounded-full transition-colors ${
-                            current === index
-                              ? "bg-primary dark:bg-primary"
-                              : "bg-gray-200 dark:bg-gray-600"
-                          }`}
-                          onClick={() => api?.scrollTo(index)}
-                          aria-label={`Go to slide ${index + 1}`}
-                        />
-                      ))}
-                    </div>
+        <div className="max-w-7xl mx-auto py-8 flex justify-end">
+          <div className="w-full max-w-md mr-4 -mt-48 -mb-32 relative">
+            <Card className="py-0">
+              <CardContent className="flex-1 p-12">
+                <div className="flex justify-between align-top">
+                  <div className="flex items-center mb-4 gap-4 ">
+                    {currentItem.category && (
+                      <Badge variant="outline">
+                        <ParagraphSmallUppercaseBold>
+                          {currentItem.category}
+                        </ParagraphSmallUppercaseBold>
+                      </Badge>
+                    )}
+                    {currentItem.date && (
+                      <ParagraphSmall>
+                        {currentItem.date || "15 April, 2025"}
+                      </ParagraphSmall>
+                    )}
                   </div>
-                  <div className="flex-1">
-                    <div className="flex items-end-safe gap-4">
-                      <div className="flex flex-col">
-                        <H3 className="mb-3">{currentItem.title}</H3>
+                  <div className="flex gap-2">
+                    {items.map((_, index) => (
+                      <button
+                        key={index}
+                        className={`h-2 w-2 rounded-full transition-colors ${
+                          current === index
+                            ? "bg-primary dark:bg-primary"
+                            : "bg-gray-200 dark:bg-gray-600"
+                        }`}
+                        onClick={() => api?.scrollTo(index)}
+                        aria-label={`Go to slide ${index + 1}`}
+                      />
+                    ))}
+                  </div>
+                </div>
+                <div className="flex-1">
+                  <div className="flex items-end-safe gap-4">
+                    <div className="flex flex-col">
+                      <H3 className="mb-3">{currentItem.title}</H3>
 
-                        <Paragraph className="mb-6">
-                          {currentItem.description ||
-                            "Entdecken Sie mehr über dieses Thema und erfahren Sie, wie unsere Lösungen zur nachhaltigen Zukunft beitragen können."}
-                        </Paragraph>
-                        <div className="flex">
-                          <Button>
-                            <ButtonText>
-                              {currentItem.link || "Zum Artikel"}
-                            </ButtonText>
-                            <ChevronRight />
-                          </Button>
-                        </div>
-                      </div>
-                      <div className="flex flex-col">
-                        <Button
-                          variant="outline"
-                          size="icon"
-                          className="h-12 w-12 border-0"
-                          onClick={() => api?.scrollPrev()}
-                          disabled={current === 0}
-                        >
-                          <Image
-                            src="/icons/arrow-right.svg"
-                            alt="Arrow Right"
-                            width={24}
-                            height={24}
-                            className="h-8 w-8 hover:color-inverse"
-                          />
-                          <span className="sr-only">Previous slide</span>
-                        </Button>
-                        <Separator className="border-t border-primary" />
-                        <Button
-                          variant="outline"
-                          size="icon"
-                          className="h-12 w-12 border-0"
-                          onClick={() => api?.scrollNext()}
-                          disabled={current === items.length - 1}
-                        >
-                          <Image
-                            src="/icons/arrow-left.svg"
-                            alt="Arrow Right"
-                            width={24}
-                            height={24}
-                            className="h-8 w-8 hover:color-inverse"
-                          />
-                          <span className="sr-only">Next slide</span>
+                      <Paragraph className="mb-6">
+                        {currentItem.description ||
+                          "Entdecken Sie mehr über dieses Thema und erfahren Sie, wie unsere Lösungen zur nachhaltigen Zukunft beitragen können."}
+                      </Paragraph>
+                      <div className="flex">
+                        <Button>
+                          <ButtonText>
+                            {currentItem.link || "Zum Artikel"}
+                          </ButtonText>
+                          <ChevronRight />
                         </Button>
                       </div>
                     </div>
+                    <div className="flex flex-col">
+                      <Button
+                        variant="outline"
+                        size="icon"
+                        className="h-12 w-12 border-0"
+                        onClick={() => api?.scrollPrev()}
+                        disabled={current === 0}
+                      >
+                        <Image
+                          src="/icons/arrow-right.svg"
+                          alt="Arrow Right"
+                          width={24}
+                          height={24}
+                          className="h-8 w-8 hover:color-inverse"
+                        />
+                        <span className="sr-only">Previous slide</span>
+                      </Button>
+                      <Separator className="border-t border-primary" />
+                      <Button
+                        variant="outline"
+                        size="icon"
+                        className="h-12 w-12 border-0"
+                        onClick={() => api?.scrollNext()}
+                        disabled={current === items.length - 1}
+                      >
+                        <Image
+                          src="/icons/arrow-left.svg"
+                          alt="Arrow Right"
+                          width={24}
+                          height={24}
+                          className="h-8 w-8 hover:color-inverse"
+                        />
+                        <span className="sr-only">Next slide</span>
+                      </Button>
+                    </div>
                   </div>
-                </CardContent>
-              </Card>
-            </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
-        )}
+        </div>
       </div>
     </section>
   );

@@ -20,13 +20,13 @@ const Footer = () => {
 
   return (
     <footer
-      className="w-full mt-auto bg-cover bg-center pt-16 last"
+      className="w-full mt-auto bg-size-[auto_320px] md:bg-size-[auto_512px] bg-center pt-24 mb:pt-16 last"
       style={{ backgroundImage: 'url("/images/map-bg.png")' }}
     >
       {/* Background Effect */}
       <div className="grid grid-cols-1 md:grid-cols-12 h-96 -mb-96">
         <div
-          className="flex flex-col md:col-span-6 relative bg-cover bg-center"
+          className="flex flex-col md:col-span-6 relative bg-size-[auto_256px] md:bg-cover bg-center"
           style={{ backgroundImage: 'url("/images/map-caption.svg")' }}
         ></div>
       </div>
@@ -34,7 +34,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-5">
         <div className="grid grid-cols-1 md:grid-cols-12">
           <div className="flex flex-col md:col-span-6">
-            <Card className="relative z-10 max-w-md -mt-16 p-0 shadow-md">
+            <Card className="relative z-10 md:max-w-md -mt-16 p-0 shadow-md">
               <CardContent className="p-8">
                 <div className="mb-8">
                   <Image
@@ -95,7 +95,7 @@ const Footer = () => {
               </CardContent>
             </Card>
           </div>
-          <div className="flex md:col-span-6 bg-background p-8 gap-8">
+          <div className="hidden md:flex md:col-span-6 bg-background p-8 gap-8">
             <div className="border-0 shadow-none py-0 flex-1">
               <ParagraphBoldUppercase>
                 Das könnte Sie interessieren
@@ -158,10 +158,10 @@ const Footer = () => {
         </div>
       </div>
       {/* Footer Bottom */}
-      <div className=" py-4 bg-gray-50 relative z-10">
+      <div className=" py-4 bg-gray-50 relative z-10 mt-32 md:mt-0">
         <div className="max-w-7xl mx-auto px-5">
           <div className="flex justify-between">
-            <div className="flex justify-center items-center gap-14">
+            <div className="hidden md:flex justify-center items-center gap-14">
               <Link href="/">
                 <ParagraphSmall>Datenschutz</ParagraphSmall>
               </Link>

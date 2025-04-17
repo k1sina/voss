@@ -7,14 +7,13 @@ import Image from "next/image";
 import MainNav from "@/components/sections/MainNav";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { Menu, X, ChevronRight } from "lucide-react";
+import { X, ChevronRight } from "lucide-react";
 import {
   Sheet,
   SheetContent,
   SheetTrigger,
   SheetClose,
 } from "@/components/ui/sheet";
-import { ButtonText } from "@/lib/typography";
 
 // Navigation items for mobile menu
 const navItems = [
@@ -146,8 +145,6 @@ const Header = () => {
                 <nav className="flex flex-col">
                   <ul className="flex flex-col w-full">
                     {navItems.map((item, index) => {
-                      const isActive = pathname === item.href;
-
                       return (
                         <React.Fragment key={item.title}>
                           <li>

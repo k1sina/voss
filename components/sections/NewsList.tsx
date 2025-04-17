@@ -2,7 +2,6 @@
 
 import {
   Card,
-  CardContent,
   CardDescription,
   CardFooter,
   CardHeader,
@@ -17,7 +16,6 @@ import {
   H3Uppercase,
   Paragraph,
   ParagraphSmall,
-  ParagraphBoldUppercase,
   ButtonText,
   H4,
   ParagraphSmallUppercaseBold,

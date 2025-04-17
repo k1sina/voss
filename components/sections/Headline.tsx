@@ -6,11 +6,9 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
   type CarouselApi,
 } from "@/components/ui/carousel";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   H3,
   Paragraph,
@@ -37,8 +35,7 @@ interface HeadlineProps {
   }[];
 }
 
-export default function Headline({ title, subtitle, items }: HeadlineProps) {
-  const [slidesPerView, setSlidesPerView] = useState(3);
+export default function Headline({ items }: HeadlineProps) {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
 
@@ -57,23 +54,6 @@ export default function Headline({ title, subtitle, items }: HeadlineProps) {
       api.off("select", handleSelect);
     };
   }, [api]);
-
-  // Responsive layout
-  useEffect(() => {
-    const handleResize = () => {
-      const width = window.innerWidth;
-      setSlidesPerView(1);
-    };
-
-    // Set initial value
-    handleResize();
-
-    // Add event listener
-    window.addEventListener("resize", handleResize);
-
-    // Clean up
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
 
   const currentItem = items[current] || items[0];
 

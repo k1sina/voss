@@ -4,20 +4,16 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "../ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+import { Card, CardContent } from "../ui/card";
 import {
   Paragraph,
   ParagraphBold,
   ParagraphSmall,
-  H4Uppercase,
-  ButtonText,
   ParagraphSmallUppercaseBold,
   ParagraphBoldUppercase,
 } from "@/lib/typography";
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
-
   return (
     <footer
       className="w-full mt-auto bg-size-[auto_320px] md:bg-size-[auto_512px] bg-center pt-24 mb:pt-16 last"

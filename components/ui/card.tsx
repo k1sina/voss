@@ -31,7 +31,6 @@ function CardHeader({ className, ...props }: React.ComponentProps<"div">) {
 function CardTitle({
   className,
   children,
-  as = "h4",
   ...props
 }: React.ComponentProps<"div"> & {
   as?: "h2" | "h3" | "h4" | "h5" | "h6";

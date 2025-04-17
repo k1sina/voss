@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import Image from "next/image";
 import MainNav from "@/components/sections/MainNav";
 import { Button } from "@/components/ui/button";
